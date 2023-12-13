@@ -96,7 +96,7 @@ class RNN(nn.Module):
                         curr_state.to(torch.float)
                     else:
                         state = state
-                    curr_input = input[:,:,num_angle*i:num_angle*i+3].to('cpu').to(torch.float)
+                    curr_input = input[:,:,num_angle*i:num_angle*i+3].to(device).to(torch.float)
                     if state != None:
                       output1, curr_state = self.models[i](curr_input, curr_state)
                     else:

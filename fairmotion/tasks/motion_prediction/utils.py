@@ -116,7 +116,7 @@ def prepare_model(
     seq_len, input_dim, hidden_dim, device, num_layers=1, architecture="seq2seq", split_architecture=False
 ):
     if architecture == "rnn":
-        model = rnn.RNN(seq_len, input_dim, hidden_dim, num_layers, split_architecture)
+        model = rnn.RNN(seq_len, input_dim, hidden_dim, num_layers, split_architecture, device=device)
     if architecture == "seq2seq":
         enc = encoders.LSTMEncoder(
             input_dim=input_dim, hidden_dim=hidden_dim
