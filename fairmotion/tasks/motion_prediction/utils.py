@@ -113,10 +113,10 @@ def prepare_dataset(
 
 
 def prepare_model(
-    input_dim, hidden_dim, device, num_layers=1, architecture="seq2seq"
+    seq_len, input_dim, hidden_dim, device, num_layers=1, architecture="seq2seq", split_architecture=False
 ):
     if architecture == "rnn":
-        model = rnn.RNN(input_dim, hidden_dim, num_layers)
+        model = rnn.RNN(seq_len, input_dim, hidden_dim, num_layers, split_architecture)
     if architecture == "seq2seq":
         enc = encoders.LSTMEncoder(
             input_dim=input_dim, hidden_dim=hidden_dim
@@ -135,10 +135,6 @@ def prepare_model(
             input_dim, hidden_dim, 4, hidden_dim, num_layers,
         )
     elif architecture == "transformer":
-        model = transformer.TransformerModel(
-            input_dim, hidden_dim, 4, hidden_dim, num_layers,
-        )
-    elif architecture == "custom":
         model = transformer.TransformerModel(
             input_dim, hidden_dim, 4, hidden_dim, num_layers,
         )
